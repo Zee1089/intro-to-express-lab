@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+console.log(`Server is running on port ${PORT}`);
+
+
 //Exercise 1
 
 // Open your browser and navigate to http://localhost:3000  
@@ -67,9 +70,12 @@ app.get('/shoes', (req, res) => {
 
     let filteredShoes = shoes;
     
-    if (minPrice >= 0 && maxPrice >=0) {
-        filteredShoes = filteredShoes.filter(shoe => shoe.price >= minPrice && shoe.price <= maxPrice);
-        
+    if (minPrice >= 0) {
+        filteredShoes = filteredShoes.filter(shoe => shoe.price >= minPrice);        
+    }
+
+    if (maxPrice <= 0) {
+        filteredShoes = filteredShoes.filter(shoe => shoe.price <= maxPrice)
     }
 
     res.send(filteredShoes)
